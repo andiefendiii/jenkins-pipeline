@@ -5,15 +5,11 @@ pipeline {
         stage('Checkout / Build') {
             steps {
                 // cretae venv
-                sh '''python -m venv env'''
-            }
-            steps {
-                // activate venv
-                sh '''env/Scripts/activate'''
-            }
-            steps {
-                // install requirement
-                sh '''pip install -r requirement.txt''' 
+                sh 
+                '''python -m venv env
+                env/Scripts/activate
+                pip install -r requirement.txt
+                '''
             }
         }
         stage('Test') {
