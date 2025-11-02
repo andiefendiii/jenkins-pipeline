@@ -4,10 +4,6 @@ pipeline {
     stages {
         stage('Checkout / Build') {
             steps {
-                //git clone
-                sh '''git clone https://github.com/andiefendiii/jenkins-pipeline.git'''
-            }
-            steps {
                 // cretae venv
                 sh '''python -m venv env'''
             }
