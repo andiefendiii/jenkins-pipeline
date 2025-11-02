@@ -10,8 +10,6 @@ pipeline {
             steps {
                 // cretae venv
                 sh '''python -m venv env'''
-                sh '''env/Scripts/activate'''
-                sh '''pip install -r requirement.txt''' 
             }
             steps {
                 // activate venv
