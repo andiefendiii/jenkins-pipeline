@@ -1,37 +1,30 @@
 pipeline {
-    agent any // Specifies that the pipeline can run on any available agent
+    agent any
 
     stages {
-        stage('Checkout / Build') {
+        stage('Setup Python Env') {
             steps {
-                // cretae venv
-                sh '''python3 -m venv env
-                source /bin/activate
-                pip3 install -r requirement.txt'''
+                sh '''
+                python3 -m venv env
+                . env/bin/activate
+                pip install -r requirement.txt
+                '''
             }
         }
-        stage('Test') {
+
+        stage('Run API Tests') {
             steps {
-                //running script
-                sh '''pytest test_user.py'''
-            }
-        }
-        stage('Report') {
-            steps {
-                echo 'Misalnya ada reportnya disini'
-                // command reportnya disini
+                sh '''
+                . env/bin/activate
+                pytest --maxfail=1 --disable-warnings -q
+                '''
             }
         }
     }
+
     post {
         always {
-            echo 'Pipeline finished.'
-        }
-        success {
-            echo 'Pipeline successful!'
-        }
-        failure {
-            echo 'Pipeline failed!'
+            archiveArtifacts artifacts: '**/reports/*.html', allowEmptyArchive: true
         }
     }
 }
