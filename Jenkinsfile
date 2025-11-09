@@ -5,7 +5,7 @@
 //         stage('Setup Python Env') {
 //             steps {
 //                 sh '''
-//                 python -m venv env
+//                 python3 -m venv env
 //                 . env/bin/activate
 //                 pip install -r requirement.txt
 //                 '''
@@ -43,13 +43,13 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'docker exec python-runner pip install -r /app/requirement.txt'
+                sh 'docker exec python-runner pip install -r requirement.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'docker exec -w /app python-runner python -m pytest --maxfail=1 --disable-warnings -v'
+                sh 'docker exec -w python-runner python -m pytest --maxfail=1 --disable-warnings -v'
             }
         }
     }
