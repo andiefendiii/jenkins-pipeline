@@ -1,4 +1,4 @@
-requests
-jsonpath
 pytest
-
+requests
+allure-pytest
+jsonpath 
