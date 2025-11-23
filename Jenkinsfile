@@ -33,13 +33,13 @@ pipeline {
     agent any
     
     stages {
-        // stage('Copy Test Files') {
-        //     steps {
-        //         sh '''docker exec python-runner mkdir -p /app
-        //             docker cp . python-runner:/app/
-        //         '''
-        //     }
-        // }
+        stage('Copy Test Files') {
+            steps {
+                sh '''docker exec python-runner mkdir -p /app
+                    docker cp . python-runner:/app/
+                '''
+            }
+        }
         
         stage('Install Dependencies') {
             steps {
