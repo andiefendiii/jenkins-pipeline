@@ -26,7 +26,7 @@ def test_list_user():
     headers = {
         'Content-Type':'application/json'
         } 
-    with allure.step(f"Kirim request GET ke {url} pake params {PARAMS}"):
+    with allure.step(f"Kirim request GET ke {baseUrl} pake params {headers}"):
         response = requests.get(url=baseUrl+path, headers=headers)
 
     with allure.step("Validasi status code 200"):    
